@@ -1,0 +1,12 @@
+# Ignore common GCC/Clang build artifacts
+*.o           # object files
+*.out         # output files
+a.out         # default GCC binary if no -o is provided
+
+# Ignore all files with no extension (likely binaries)
+!*.*          # do not ignore files with extensions
+[!._]*        # ignore files with no extension (likely binaries), but not dotfiles like .gitignore
+
+# Keep source and header files
+!*.c
+!*.h
