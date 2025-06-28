@@ -1,19 +1,18 @@
-# Ignore all object files anywhere
+# Ignore object files everywhere
 **/*.o
 
-# Ignore executables with no extension in any folder
-# This uses a glob that matches files without dots in their names
-**/[!.]*       # ignore files without leading dot or extension
-**/[!.]*/*     # also catch executables inside nested folders
+# Ignore default output names
+**/a.out
+**/*.out
+
+# Ignore debug symbols, core dumps, etc.
+**/core
+**/*.dSYM/
 
 # Allow source and header files everywhere
 !**/*.c
 !**/*.h
 
-# Explicitly ignore common GCC outputs
-**/a.out
-**/*.out
-
-# Optional: ignore debug symbols, core dumps, etc.
-**/core
-**/*.dSYM/
+# Ignore files with no extensions (typical GCC executables)
+**/*
+!**/*.*       # keep files with extensions
