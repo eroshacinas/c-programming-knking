@@ -1,12 +1,19 @@
-# Ignore common GCC/Clang build artifacts
-*.o           # object files
-*.out         # output files
-a.out         # default GCC binary if no -o is provided
+# Ignore all object files anywhere
+**/*.o
 
-# Ignore all files with no extension (likely binaries)
-!*.*          # do not ignore files with extensions
-[!._]*        # ignore files with no extension (likely binaries), but not dotfiles like .gitignore
+# Ignore executables with no extension in any folder
+# This uses a glob that matches files without dots in their names
+**/[!.]*       # ignore files without leading dot or extension
+**/[!.]*/*     # also catch executables inside nested folders
 
-# Keep source and header files
-!*.c
-!*.h
+# Allow source and header files everywhere
+!**/*.c
+!**/*.h
+
+# Explicitly ignore common GCC outputs
+**/a.out
+**/*.out
+
+# Optional: ignore debug symbols, core dumps, etc.
+**/core
+**/*.dSYM/
