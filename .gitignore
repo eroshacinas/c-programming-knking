@@ -14,9 +14,7 @@ core
 *.dSYM/
 **/*.dSYM/
 
-# Ignore macOS system files
-.DS_Store
-**/.DS_Store
+
 
 # Ignore files with no extension (typical compiled executables)
 # This pattern ignores files without extensions but keeps directories
