@@ -6,7 +6,7 @@
 
 //func prototypes
 int read_line(char[], int);
-void reverse_str(char*, int);
+void reverse_str(const char*, int);
 
 int main(){
 char message[STR_LEN + 1];
@@ -19,13 +19,16 @@ printf("%s\n", message);
 
 
 reverse_str(message, len);
+printf("\n");
 
 return 0;
 }
 
-void reverse_str(char *message, int n){
-	char *m = message+n;
+void reverse_str(const char *message, // dont modify stored str in *message 
+		int n){
+	const char *m = message+n-1; // point to char before '\0'; ensure m doesnt modify orig char
 
+	// loop while m's addr is greater than or eq to message's first char addr
 	for(;m >= message; m--){
 		printf("%c", *m);
 	}
