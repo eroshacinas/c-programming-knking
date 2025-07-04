@@ -1,18 +1,24 @@
-# Ignore object files everywhere
+# Ignore compiled object files
+*.o
 **/*.o
 
-# Ignore default output names
+# ignore .DS_Store
+.DS_Store
+
+# Ignore default GCC output names
+a.out
 **/a.out
+*.out
 **/*.out
 
-# Ignore debug symbols, core dumps, etc.
+# Ignore debug symbols and core dumps
+core
 **/core
+*.dSYM/
 **/*.dSYM/
 
-# Allow source and header files everywhere
-!**/*.c
-!**/*.h
-
-# Ignore files with no extensions (typical GCC executables)
-**/*
-!**/*.*       # keep files with extensions
+# Ignore files with no extension (typical compiled executables)
+# This pattern ignores files without extensions but keeps directories
+*
+!*/
+!*.*
