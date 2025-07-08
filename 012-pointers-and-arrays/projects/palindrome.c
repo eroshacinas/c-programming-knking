@@ -35,11 +35,20 @@ return i; // return num of chars stored
 
 
 bool is_palindrome(char input[], int input_len){
-	char preprocess_arr[LEN];
+	// be careful not to modify where an array var's pointed at if youll use it as a pointer
+	// ie arrays can be treated as pointers but their address CANT be repointed somewhere else
+	// it should always point to address of first value
+	char preprocess_arr[LEN], *c=input, *p=preprocess_arr;
 
-	for(char *c = input; *c != '\0'; c++)
-		if(*c >= 65 && *c <= 122)
-	       		printf("%c", *c);
+	for(; *c; c++)
+		if(*c >= 65 && *c <= 122){
+			*p=*c; // store alphabet
+			p++;
+		}
+
+	*p = '\0'; // store terminating char
+	printf("%s\n", preprocess_arr);
+
 	
 	return true;	
 
