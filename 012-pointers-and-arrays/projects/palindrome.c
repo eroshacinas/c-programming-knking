@@ -41,7 +41,7 @@ bool is_palindrome(char input[], int input_len){
 	char preprocess_arr[LEN], *c=input, *p=preprocess_arr;
 
 	for(; *c; c++)
-		if(*c >= 65 && *c <= 122){
+		if(*c >= 'A' && *c <= 'z'){
 			*p=*c; // store alphabet
 			p++;
 		}
