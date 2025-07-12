@@ -9,6 +9,9 @@ struct node{
 // func prototypes
 struct node *add_to_list(struct node *list, int val);
 void print_linked_list(struct node *list);
+struct node *search_list(struct node *list, int value);
+struct node *delete_from_linked_list(struct node *list, int value);
+
 
 int main(){
 	
@@ -25,6 +28,30 @@ int main(){
 
 	print_linked_list(first);
 
+	int value = 0;
+	struct node *p;
+
+	for(; value >= 0; ){
+		printf("Enter value to search: ");
+		scanf("%d", &value);
+
+		if(value < 0){
+			printf("Exiting program...\n");
+			break;
+		}
+
+		//p = search_list(first, value);
+		p = delete_from_linked_list(first, value);
+
+		if(p!=NULL)
+			printf("%d retrieved at node %d\n", value, p);
+		else
+			printf("Value not found\n");
+
+
+		print_linked_list(first);
+
+	}
 	return 0;
 }
 
@@ -54,4 +81,48 @@ void print_linked_list(struct node *list){
 	for(i=0;  list != NULL; list = list->next, i++)
 		printf("Element %d:\t%d\n", i, list->value);
 
+}
+
+
+struct node *search_list(struct node *list, int value){
+	// struct node *p;
+
+	// more optimized loop, since it iterates while value hasnt been found.
+	// it will also stop when it gets to the end of the list; ie list == NULL
+	for(; list!=NULL && list->value!=value; list = list->next)
+		;
+
+	return list;
+
+	//for(p=list; p != NULL; p = p->next)
+	//	if(p->value == value)
+	//		return p
+
+	//return NULL;
+}
+
+
+
+struct node *delete_from_linked_list(struct node *list, int value){
+	struct node *cur, *prev;
+
+	for(
+			prev=NULL, cur=list; // set initial values of prev pointer to null and curr to first addr of list
+			cur!=NULL && cur->value!=value; // iterate while curr is not NULL and value hasnt been found
+			prev = cur, cur=cur->next) // point prev to current, and point curr to next address
+		;
+
+	if(cur == NULL) // value not found in list
+		return list;
+
+	else if (prev == NULL) // value to be removed is first node
+		list = list->next;
+
+	else // node to be removed is found but not as the first node
+		prev->next = cur->next;
+
+
+	free(cur); // deallocate memory holding this struct node
+	
+	return list;
 }
