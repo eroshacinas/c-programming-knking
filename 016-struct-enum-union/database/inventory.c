@@ -18,6 +18,7 @@ void insert(void);
 void search(void);
 void update(void);
 void print(void);
+void bubble_sort(struct part inventory []);
 
 int main(void){
 	char code;
@@ -28,7 +29,7 @@ int main(void){
 		while(getchar() != '\n'); // skip to end of line
 		
 		switch(code){
-			case 'i': insert();
+			case 'i': insert(); bubble_sort(inventory); // sort everytime a new element is inserted
 				  break;
 
 			case 's': search();
@@ -37,7 +38,7 @@ int main(void){
 			case 'u': update();
 				  break;
 
-			case 'p': print();
+			case 'p': print(); 
 				  break;
 
 			case 'q': return 0;
@@ -136,3 +137,31 @@ void print(void){
 		printf("%7d	%-25s%11d\n", inventory[i].number, inventory[i].name, inventory[i].on_hand);
 
 }
+
+
+
+void bubble_sort(struct part inventory []){
+	int i, j;
+	struct part hold; // variable to hold and compare with other elements in array
+
+	// go through first to N-2 index
+	// value of last index (N-1) will always be sorted by default, so no need to check
+	for(i=0; i < num_parts - 1; i++){
+		//hold = *(inventory+i); // treat as pointer, since it decays to one anyways when passed array arrays are passed in funcs
+
+		for(j=i+1; j < num_parts - 1; j++){
+			//printf("hold part number \telement part number\n");
+			//printf("%d \t%d\n", (inventory+i)->number, (inventory+j)->number);
+
+			// swap values if current i index is larger
+			if((inventory+i)->number > (inventory+j)->number){
+				hold = *(inventory+i);
+				*(inventory+i) = *(inventory+j); // store value at index j to index i; value[i] <- value[j]
+				*(inventory+j) = hold; // store original value of index i to index j; value[j] <- value[i]
+			}
+		}	
+
+	}	
+
+	return;
+} 
